@@ -12,9 +12,9 @@
                 console.log('from iframe clients ' , clients);
 
         for(const client of clients){
-          //if(client !== event.source){
+          if(event){ //client !== event.source){
             client.postMessage(evet.data, '*');
-         // }
+          }
         }
         
       });
