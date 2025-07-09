@@ -9,10 +9,12 @@
       window.addEventListener('message' , event => {
         console.log('from iframe ' , event);
         clients.add(event.source);
+                console.log('from iframe clients ' , clients);
+
         for(const client of clients){
-          if(client !== event.source){
+          //if(client !== event.source){
             client.postMessage(evet.data, '*');
-          }
+         // }
         }
         
       });
