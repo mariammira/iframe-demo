@@ -24,7 +24,7 @@ channel.onmessage = (event) => {
         clients.add(event.source);
          if(event){ //client !== event.source){
              sendMessage(event.data);
-        
+         }
       });
 
       function sendDataToAllClients(data){
