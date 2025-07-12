@@ -11,7 +11,7 @@ const channel = new BroadcastChannel("my-iframe-channel");
 // Send a message
 function sendMessage(msg) {
   debugger;
-  channel.postMessage({ type: "update", data: msg.data });
+  channel.postMessage({ type: "message", data: msg.data });
 }
 
 // Listen for messages
