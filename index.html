@@ -30,7 +30,7 @@ channel.onmessage = (event) => {
       function sendDataToAllClients(data){
         for(const client of clients){
             client.postMessage(data, '*');
-           // sendMessage(data);
+            sendMessage(data);
           
         }
       }
