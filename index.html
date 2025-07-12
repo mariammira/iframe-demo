@@ -24,7 +24,7 @@ channel.onmessage = (event) => {
         console.log("from addEventListener", event)
         clients.add(event.source);
          if(event){ //client !== event.source){
-             sendMessage(event.data);
+             sendMessage(event);
          }
       });
 
