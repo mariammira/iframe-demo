@@ -10,17 +10,22 @@ const channel = new BroadcastChannel("my-iframe-channel");
 
 // Send a message
 function sendMessage(msg) {
+  debugger;
   channel.postMessage({ type: "update", data: msg.data });
 }
 
 // Listen for messages
 channel.onmessage = (event) => {
+    debugger;
+
   console.log("Received in iframe:", event.data);
   // Handle the message
   sendDataToAllClients(event.data)
 };
       const clients = new Set();
       window.addEventListener('message' , event => {
+          debugger;
+
         console.log("from addEventListener", event)
         clients.add(event.source);
          if(event){ //client !== event.source){
