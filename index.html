@@ -21,6 +21,7 @@ channel.onmessage = (event) => {
 };
       const clients = new Set();
       window.addEventListener('message' , event => {
+        console.log("from addEventListener", event)
         clients.add(event.source);
          if(event){ //client !== event.source){
              sendMessage(event.data);
@@ -30,7 +31,6 @@ channel.onmessage = (event) => {
       function sendDataToAllClients(data){
         for(const client of clients){
             client.postMessage(data, '*');
-            sendMessage(data);
           
         }
       }
