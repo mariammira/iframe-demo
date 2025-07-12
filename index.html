@@ -17,21 +17,23 @@ function sendMessage(msg) {
 channel.onmessage = (event) => {
   console.log("Received in iframe:", event.data);
   // Handle the message
+  sendDataToAllClients(event.data)
 };
       const clients = new Set();
       window.addEventListener('message' , event => {
-        console.log('from iframe ' , event);
         clients.add(event.source);
-                console.log('from iframe clients ' , clients);
-
-        for(const client of clients){
-          if(event){ //client !== event.source){
-            client.postMessage(event.data, '*');
-            sendMessage(event.data);
-          }
-        }
+         if(event){ //client !== event.source){
+             sendMessage(event.data);
         
       });
+
+      function sendDataToAllClients(data){
+        for(const client of clients){
+            client.postMessage(data, '*');
+           // sendMessage(data);
+          
+        }
+      }
     </script>
   </body>
 </html>
