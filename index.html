@@ -5,6 +5,19 @@
   <body>
    <h1> Hello world</h1>
     <script>
+      // Create a broadcast channel
+const channel = new BroadcastChannel("my-iframe-channel");
+
+// Send a message
+function sendMessage(msg) {
+  channel.postMessage({ type: "update", data: msg });
+}
+
+// Listen for messages
+channel.onmessage = (event) => {
+  console.log("Received in iframe:", event.data);
+  // Handle the message
+};
       const clients = new Set();
       window.addEventListener('message' , event => {
         console.log('from iframe ' , event);
@@ -14,6 +27,7 @@
         for(const client of clients){
           if(event){ //client !== event.source){
             client.postMessage(event.data, '*');
+            sendMessage(event.data);
           }
         }
         
