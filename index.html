@@ -10,7 +10,7 @@ const channel = new BroadcastChannel("my-iframe-channel");
 
 // Send a message
 function sendMessage(msg) {
-  channel.postMessage({ type: "update", data: msg });
+  channel.postMessage({ type: "update", data: msg.data });
 }
 
 // Listen for messages
@@ -29,7 +29,7 @@ channel.onmessage = (event) => {
 
       function sendDataToAllClients(data){
         for(const client of clients){
-            client.postMessage(data.data, '*');
+            client.postMessage(data, '*');
            // sendMessage(data);
           
         }
