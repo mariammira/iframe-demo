@@ -10,7 +10,7 @@ function sendMessage(msg) {
   channel.postMessage({ type: "message", data: msg.data });
 }
 channel.onmessage = (event) => {
-  sendDataToAllClients(event.data)
+  sendDataToAllClients(event)
 };
       const clients = new Set();
       window.addEventListener('message' , event => {
@@ -20,13 +20,15 @@ channel.onmessage = (event) => {
         }
          if(event){ //client !== event.source){
              sendMessage(event);
-             sendDataToAllClients(event.data)
+             sendDataToAllClients(event)
 
          }
       });
-      function sendDataToAllClients(data){
+      function sendDataToAllClients(event){
         for(const client of clients){
-            client.postMessage(data, '*');
+            if(client !== event.source){
+              client.postMessage(event.data, '*');
+            }
         }
       }
     </script>
