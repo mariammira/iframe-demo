@@ -21,9 +21,10 @@ channel.onmessage = (event) => {
          if(event){ //client !== event.source){
              sendMessage(event);
               for(const client of clients){
-            if(client !== event.source){
+            //if(client !== event.source){
+                console.log(event.source);
               client.postMessage(event.data, '*');
-            }
+           // }
         }
 
          }
