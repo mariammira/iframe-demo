@@ -5,43 +5,27 @@
   <body>
    <h1> Hello world</h1>
     <script>
-      // Create a broadcast channel
 const channel = new BroadcastChannel("my-iframe-channel");
-
-// Send a message
 function sendMessage(msg) {
-  debugger;
   channel.postMessage({ type: "message", data: msg.data });
 }
-
-// Listen for messages
 channel.onmessage = (event) => {
-    debugger;
-
-  console.log("Received in iframe:", event.data);
-  // Handle the message
   sendDataToAllClients(event.data)
 };
       const clients = new Set();
       window.addEventListener('message' , event => {
-          debugger;
         if(event.data.type === 'registartion' ){
-          debugger;
            clients.add(event.source);
         }
-
-        console.log("from addEventListener", event)
          if(event){ //client !== event.source){
              sendMessage(event);
              sendDataToAllClients(event.data)
 
          }
       });
-
       function sendDataToAllClients(data){
         for(const client of clients){
             client.postMessage(data, '*');
-          
         }
       }
     </script>
