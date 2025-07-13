@@ -20,15 +20,19 @@ channel.onmessage = (event) => {
         }
          if(event){ //client !== event.source){
              sendMessage(event);
-             sendDataToAllClients(event)
+              for(const client of clients){
+            if(client !== event.source){
+              client.postMessage(event.data, '*');
+            }
+        }
 
          }
       });
       function sendDataToAllClients(event){
         for(const client of clients){
-            if(client !== event.source){
+            
               client.postMessage(event.data, '*');
-            }
+            
         }
       }
     </script>
