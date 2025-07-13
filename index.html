@@ -16,6 +16,7 @@ channel.onmessage = (event) => {
       window.addEventListener('message' , event => {
         if(event.data.type === 'registartion' ){
            clients.add(event.source);
+           return;
         }
          if(event){ //client !== event.source){
              sendMessage(event);
