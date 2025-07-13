@@ -25,7 +25,7 @@ channel.onmessage = (event) => {
       const clients = new Set();
       window.addEventListener('message' , event => {
           debugger;
-        if(event.type === 'registartion' ){
+        if(event.data.type === 'registartion' ){
           debugger;
            clients.add(event.source);
         }
